@@ -9,6 +9,11 @@ export class psdTooltipDirective {
   constructor(
     @Host() @Self() @Optional() private readonly hostEl: Tooltip
   ) {
+
+    // default is 'body' which appends the tooltip element at the bottom of the page
+    // within the ShadowDom we want to default to appending to the current element
+    (hostEl as any)._tooltipOptions.appendTo = 'target';
+
     hostEl.bindScrollListener = () => {
       if (!hostEl.scrollHandler) {
         hostEl.scrollHandler = new ConnectedOverlayScrollHandler(hostEl.el.nativeElement, () => {
