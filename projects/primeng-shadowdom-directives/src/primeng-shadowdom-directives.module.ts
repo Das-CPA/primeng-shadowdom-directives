@@ -10,6 +10,7 @@ import {
   psdColorPickerDirective,
   psdMegaMenuDirective,
   psdMenuBarDirective,
+  psdInputMask,
 } from "./directives";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     psdColorPickerDirective,
     psdMegaMenuDirective,
     psdMenuBarDirective,
+    psdInputMask
   ],
   imports: [
     BrowserAnimationsModule
@@ -40,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     psdColorPickerDirective,
     psdMegaMenuDirective,
     psdMenuBarDirective,
+    psdInputMask
   ]
 })
 export class PrimeNGShadowDOMDirective { }

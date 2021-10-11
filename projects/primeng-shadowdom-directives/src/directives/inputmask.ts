@@ -4,7 +4,7 @@ import { InputMask } from 'primeng/inputmask';
 @Directive({
   selector: '[psdInputMask]',
 })
-export class psdDropdownDirective {
+export class psdInputMask {
   constructor(
     @Host() @Self() @Optional() private readonly hostEl: InputMask
   ) {
@@ -47,6 +47,6 @@ export class psdDropdownDirective {
             return { begin: begin, end: end };
         }
     }
-    
+
   }
 }

@@ -8,6 +8,7 @@ import { psdMenuDirective } from "./menu";
 import { psdMenuBarDirective } from "./menubar";
 import { psdMultiSelectDirective } from "./multiselect";
 import { psdTooltipDirective } from "./tooltip";
+import { psdInputMask } from './inputmask';
 
 export {
   psdDropdownDirective,
@@ -20,4 +21,5 @@ export {
   psdColorPickerDirective,
   psdMegaMenuDirective,
   psdMenuBarDirective,
+  psdInputMask
 }
