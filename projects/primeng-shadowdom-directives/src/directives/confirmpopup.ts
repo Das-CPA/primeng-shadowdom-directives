@@ -10,6 +10,15 @@ export class psdConfirmPopupDirective {
     constructor(
         @Host() @Self() @Optional() private readonly hostEl: ConfirmPopup
     ) {
+        hostEl.onAnimationStart = (event) => {
+            if (event.toState === 'open') {
+                this.hostEl.container = event.element;
+                // document.body.appendChild(this.container);
+                this.hostEl.align();
+                this.hostEl.bindListeners();
+            }
+        }
+
         hostEl.bindScrollListener = () => {
             if (!this.hostEl.scrollHandler) {
                 this.hostEl.scrollHandler = new ConnectedOverlayScrollHandler(this.hostEl.confirmation.target, () => {
@@ -21,5 +30,5 @@ export class psdConfirmPopupDirective {
             this.hostEl.scrollHandler.bindScrollListener();
         }
     }
-    
+
 }
