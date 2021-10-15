@@ -7,11 +7,11 @@ import { DomHandler } from '../domhandler';
         'class': 'p-element'
     }
 })
-export class StyleClass implements AfterViewInit, OnDestroy {
+export class psdStyleClass implements AfterViewInit, OnDestroy {
 
     constructor(public el: ElementRef, public renderer: Renderer2) {}
 
-    @Input('dStyleClass') selector: string;
+    @Input('psdStyleClass') selector: string;
 
     @Input() enterClass: string;
 
