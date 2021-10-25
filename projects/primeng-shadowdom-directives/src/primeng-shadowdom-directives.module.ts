@@ -15,6 +15,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { psdConfirmPopupDirective } from "./directives/confirmpopup";
 import { psdStyleClass } from "./directives/styleclass";
+import { psdOverlayPanel } from "./directives/overlayPanel";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { psdStyleClass } from "./directives/styleclass";
     psdMenuBarDirective,
     psdInputMask,
     psdConfirmPopupDirective,
-    psdStyleClass
+    psdStyleClass,
+    psdOverlayPanel
   ],
   imports: [
     BrowserAnimationsModule
@@ -48,7 +50,8 @@ import { psdStyleClass } from "./directives/styleclass";
     psdMenuBarDirective,
     psdInputMask,
     psdConfirmPopupDirective,
-    psdStyleClass
+    psdStyleClass,
+    psdOverlayPanel
   ]
 })
 export class PrimeNGShadowDOMDirective { }
