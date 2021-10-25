@@ -17,6 +17,7 @@ export class psdOverlayPanel {
                 // document.body.appendChild(this.container);
                 this.hostEl.align();
                 this.hostEl.bindDocumentClickListener();
+                this.hostEl.bindScrollListener();
                 this.hostEl.bindDocumentResizeListener();
             }
         }
