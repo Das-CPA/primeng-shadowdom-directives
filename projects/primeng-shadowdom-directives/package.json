@@ -1,6 +1,6 @@
 {
   "name": "primeng-shadowdom-directives",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "peerDependencies": {
     "@angular/common": "^11.2.4",
     "@angular/core": "^11.2.4",
