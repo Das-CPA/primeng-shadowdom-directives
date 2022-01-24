@@ -15,6 +15,7 @@ import { psdTieredMenuDirective } from "./tieredmenu";
 import { psdTooltipDirective } from "./tooltip";
 import { psdInputMask } from './inputmask';
 import { psdTreeSelectDirective } from "./treeselect";
+import { psdStyleClass } from "./styleclass";
 
 export {
   psdDropdownDirective,
@@ -34,4 +35,5 @@ export {
   psdOverlayPanelDirective,
   psdSplitButtonDirective,
   psdTreeSelectDirective,
+  psdStyleClass
 }

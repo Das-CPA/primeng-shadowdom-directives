@@ -17,7 +17,7 @@ export class psdInputMask {
                 this.hostEl.inputViewChild.nativeElement.ownerDocument.activeElement.shadowRoot.activeElement !== this.hostEl.inputViewChild.nativeElement :
                 this.hostEl.inputViewChild.nativeElement.ownerDocument.activeElement.activeElement !== this.hostEl.inputViewChild.nativeElement
         ) {
-            return;
+            return undefined;
         }
 
         if (typeof first == 'number') {
@@ -46,6 +46,8 @@ export class psdInputMask {
             }
             return { begin: begin, end: end };
         }
+
+        return undefined;
     }
 
     /*
