@@ -15,6 +15,16 @@ import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenubarModule } from 'primeng/menubar';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
+import { SlideMenuModule } from 'primeng/slidemenu';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { EditorModule } from 'primeng/editor';
+import { TreeSelectModule } from 'primeng/treeselect';
 
 @NgModule({
   declarations: [
@@ -34,9 +44,18 @@ import { MenubarModule } from 'primeng/menubar';
     CascadeSelectModule,
     ColorPickerModule,
     MegaMenuModule,
-    MenubarModule
+    MenubarModule,
+    ConfirmPopupModule,
+    SlideMenuModule,
+    TieredMenuModule,
+    ContextMenuModule,
+    OverlayPanelModule,
+    SplitButtonModule,
+    SpeedDialModule,
+    EditorModule,
+    TreeSelectModule,
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

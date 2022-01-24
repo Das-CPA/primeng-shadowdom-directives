@@ -11,11 +11,15 @@ import {
   psdMegaMenuDirective,
   psdMenuBarDirective,
   psdInputMask,
+  psdSlideMenuDirective,
+  psdTieredMenuDirective,
+  psdOverlayPanelDirective,
+  psdSplitButtonDirective,
+  psdTreeSelectDirective,
 } from "./directives";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { psdConfirmPopupDirective } from "./directives/confirmpopup";
 import { psdStyleClass } from "./directives/styleclass";
-import { psdOverlayPanel } from "./directives/overlayPanel";
 
 @NgModule({
   declarations: [
@@ -32,7 +36,12 @@ import { psdOverlayPanel } from "./directives/overlayPanel";
     psdInputMask,
     psdConfirmPopupDirective,
     psdStyleClass,
-    psdOverlayPanel
+    psdConfirmPopupDirective,
+    psdSlideMenuDirective,
+    psdTieredMenuDirective,
+    psdOverlayPanelDirective,
+    psdSplitButtonDirective,
+    psdTreeSelectDirective,
   ],
   imports: [
     BrowserAnimationsModule
@@ -51,7 +60,12 @@ import { psdOverlayPanel } from "./directives/overlayPanel";
     psdInputMask,
     psdConfirmPopupDirective,
     psdStyleClass,
-    psdOverlayPanel
+    psdConfirmPopupDirective,
+    psdSlideMenuDirective,
+    psdTieredMenuDirective,
+    psdOverlayPanelDirective,
+    psdSplitButtonDirective,
+    psdTreeSelectDirective,
   ]
 })
 export class PrimeNGShadowDOMDirective { }

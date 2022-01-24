@@ -1,52 +1,60 @@
-import { Directive, Host, Optional, Self } from "@angular/core";
+import { Directive, Host, NgZone, Optional, Self } from "@angular/core";
 import { OverlayPanel } from "primeng/overlaypanel";
 import { ConnectedOverlayScrollHandler } from "../connectedoverlayscrollhandler";
 import { DomHandler } from "../domhandler";
 
 @Directive({
-    selector: '[psdOverlayPanel]',
+  selector: '[psdOverlayPanel]',
 })
-export class psdOverlayPanel {
+export class psdOverlayPanelDirective {
+  constructor(
+    @Host() @Self() @Optional() private readonly hostEl: OverlayPanel,
+    private zone: NgZone
+  ) {
 
-    constructor(
-        @Host() @Self() @Optional() private readonly hostEl: OverlayPanel
-    ) {
-        hostEl.onAnimationStart = (event) => {
-            if (event.toState === 'open') {
-                this.hostEl.container = event.element;
-                // document.body.appendChild(this.container);
-                this.hostEl.align();
-                this.hostEl.bindDocumentClickListener();
-                this.hostEl.bindScrollListener();
-                this.hostEl.bindDocumentResizeListener();
-            }
-        }
+    hostEl.onAnimationStart = (event) => {
+      if (event.toState === 'open') {
+          this.hostEl.container = event.element;
+          // document.body.appendChild(this.container);
+          this.hostEl.align();
+          this.hostEl.bindDocumentClickListener();
+          this.hostEl.bindScrollListener();
+          this.hostEl.bindDocumentResizeListener();
+      }
+  }
 
-        hostEl.bindDocumentClickListener = () => {
-            if (!this.hostEl.documentClickListener) {
-                let documentEvent = DomHandler.isIOS() ? 'touchstart' : 'click';
-                const documentTarget = this.hostEl.el ? this.hostEl.el.nativeElement.ownerDocument : document;
-                this.hostEl.documentClickListener = this.hostEl.renderer.listen(documentTarget, documentEvent, (ev) => {
-                    let targetElement = this.hostEl.target as HTMLElement;
-                    const eventTarget = ev.composedPath()[0];
-                    if (this.hostEl.container !== eventTarget && !this.hostEl.container.contains(eventTarget) &&
-                        targetElement !== eventTarget && !targetElement.contains(eventTarget)) {
-                        this.hostEl.hide();
-                    }
-                });
-            }
-        }
+    hostEl.bindScrollListener = () => {
+      if (!hostEl.scrollHandler) {
+        hostEl.scrollHandler = new ConnectedOverlayScrollHandler(hostEl.target, () => {
+          if (hostEl.overlayVisible) {
+            hostEl.hide();
+          }
+        });
+      }
 
-        hostEl.bindScrollListener = () => {
-            if (!this.hostEl.scrollHandler) {
-                this.hostEl.scrollHandler = new ConnectedOverlayScrollHandler(this.hostEl.target, () => {
-                    if (this.hostEl.overlayVisible) {
-                        this.hostEl.hide();
-                    }
-                });
-            }
-            this.hostEl.scrollHandler.bindScrollListener();
-        }
+      hostEl.scrollHandler.bindScrollListener();
     }
 
+    hostEl.bindDocumentClickListener = () => {
+      if (!hostEl.documentClickListener && hostEl.dismissable) {
+        this.zone.runOutsideAngular(() => {
+          let documentEvent = DomHandler.isIOS() ? 'touchstart' : 'click';
+          const documentTarget: any = hostEl.el ? hostEl.el.nativeElement.ownerDocument : 'document';
+
+          hostEl.documentClickListener = hostEl.renderer.listen(documentTarget, documentEvent, (event) => {
+            const path = event.path || (event.composedPath && event.composedPath());
+            const target = event.target.shadowRoot ? path[0] : event.target
+            if (!hostEl.container.contains(target) && hostEl.target !== target && !hostEl.target.contains(target) && !hostEl.selfClick) {
+              this.zone.run(() => {
+                hostEl.hide();
+              });
+            }
+
+            hostEl.selfClick = false;
+            hostEl.cd.markForCheck();
+          });
+        });
+      }
+    }
+  }
 }
