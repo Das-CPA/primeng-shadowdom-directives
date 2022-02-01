@@ -8,7 +8,7 @@ import { psdMegaMenuDirective } from "./megamenu";
 import { psdMenuDirective } from "./menu";
 import { psdMenuBarDirective } from "./menubar";
 import { psdMultiSelectDirective } from "./multiselect";
-import { psdOverlayPanelDirective } from "./overlaypanel";
+import { psdOverlayPanelDirective } from "./overlayPanel";
 import { psdSlideMenuDirective } from "./slidemenu";
 import { psdSplitButtonDirective } from "./splitbutton";
 import { psdTieredMenuDirective } from "./tieredmenu";

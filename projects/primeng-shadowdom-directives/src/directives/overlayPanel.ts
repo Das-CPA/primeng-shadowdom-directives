@@ -11,18 +11,6 @@ export class psdOverlayPanelDirective {
     @Host() @Self() @Optional() private readonly hostEl: OverlayPanel,
     private zone: NgZone
   ) {
-
-    hostEl.onAnimationStart = (event) => {
-      if (event.toState === 'open') {
-          this.hostEl.container = event.element;
-          // document.body.appendChild(this.container);
-          this.hostEl.align();
-          this.hostEl.bindDocumentClickListener();
-          this.hostEl.bindScrollListener();
-          this.hostEl.bindDocumentResizeListener();
-      }
-  }
-
     hostEl.bindScrollListener = () => {
       if (!hostEl.scrollHandler) {
         hostEl.scrollHandler = new ConnectedOverlayScrollHandler(hostEl.target, () => {
