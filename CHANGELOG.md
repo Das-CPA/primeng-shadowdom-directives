@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/Das-CPA/primeng-shadowdom-directives/compare/v0.0.4...v0.1.3) (2022-02-01)
+
+
+### Features
+
+* add confirm popup ([c0faec2](https://github.com/Das-CPA/primeng-shadowdom-directives/commit/c0faec29b49b109619e1be0f8d5ff2ea8e80b433))
+* add overlay panel, slidemenu, splitbutton, tieredmenu, treeselect ([d662ac1](https://github.com/Das-CPA/primeng-shadowdom-directives/commit/d662ac15c1248e311ab80539e229f811261d1b72))
+
 ### [0.1.2](https://github.com/Das-CPA/primeng-shadowdom-directives/compare/v0.1.1...v0.1.2) (2022-01-24)
 
 ### [0.1.1](https://github.com/Das-CPA/primeng-shadowdom-directives/compare/v0.0.4...v0.1.1) (2022-01-24)
