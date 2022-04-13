@@ -1,50 +1,56 @@
-import { Directive, Host, Optional, Self } from "@angular/core";
-import { ConfirmPopup } from "primeng/confirmpopup";
-import { ConnectedOverlayScrollHandler } from "../connectedoverlayscrollhandler";
-import { DomHandler } from "../domhandler";
+import { Directive, Host, Optional, Self } from '@angular/core';
+import { ConfirmPopup } from 'primeng/confirmpopup';
+import { ConnectedOverlayScrollHandler } from '../connectedoverlayscrollhandler';
+import { DomHandler } from '../domhandler';
 
 @Directive({
-    selector: '[psdConfirmPopup]',
+  selector: '[psdConfirmPopup]',
 })
 export class psdConfirmPopupDirective {
-
-    constructor(
-        @Host() @Self() @Optional() private readonly hostEl: ConfirmPopup
-    ) {
-        hostEl.onAnimationStart = (event) => {
-            if (event.toState === 'open') {
-                this.hostEl.container = event.element;
-                // document.body.appendChild(this.container);
-                this.hostEl.align();
-                this.hostEl.bindListeners();
+  constructor(
+    @Host() @Self() @Optional() private readonly hostEl: ConfirmPopup
+  ) {
+    hostEl.bindScrollListener = () => {
+      if (!hostEl.scrollHandler) {
+        hostEl.scrollHandler = new ConnectedOverlayScrollHandler(
+          hostEl.confirmation.target,
+          () => {
+            if (hostEl.visible) {
+              hostEl.hide();
             }
-        }
+          }
+        );
+      }
 
-        hostEl.bindDocumentClickListener = () => {
-            if (!this.hostEl.documentClickListener) {
-                let documentEvent = DomHandler.isIOS() ? 'touchstart' : 'click';
-                const documentTarget = this.hostEl.el ? this.hostEl.el.nativeElement.ownerDocument : document;
-                this.hostEl.documentClickListener = this.hostEl.renderer.listen(documentTarget, documentEvent, (ev) => {
-                    let targetElement = this.hostEl.confirmation.target as HTMLElement;
-                    const eventTarget = ev.composedPath()[0];
-                    if (this.hostEl.container !== eventTarget && !this.hostEl.container.contains(eventTarget) &&
-                        targetElement !== eventTarget && !targetElement.contains(eventTarget)) {
-                        this.hostEl.hide();
-                    }
-                });
+      hostEl.scrollHandler.bindScrollListener();
+    };
+
+    hostEl.bindDocumentClickListener = () => {
+      if (!hostEl.documentClickListener) {
+        let documentEvent = DomHandler.isIOS() ? 'touchstart' : 'click';
+        const documentTarget: any = hostEl.el
+          ? hostEl.el.nativeElement.ownerDocument
+          : document;
+
+        hostEl.documentClickListener = hostEl.renderer.listen(
+          documentTarget,
+          documentEvent,
+          (event) => {
+            let targetElement = <HTMLElement>hostEl.confirmation.target;
+            const path =
+              event.path || (event.composedPath && event.composedPath());
+            const target = event.target.shadowRoot ? path[0] : event.target;
+            if (
+              hostEl.container !== target &&
+              !hostEl.container.contains(target) &&
+              targetElement !== target &&
+              !targetElement.contains(target)
+            ) {
+              hostEl.hide();
             }
-        }
-
-        hostEl.bindScrollListener = () => {
-            if (!this.hostEl.scrollHandler) {
-                this.hostEl.scrollHandler = new ConnectedOverlayScrollHandler(this.hostEl.confirmation.target, () => {
-                    if (this.hostEl.visible) {
-                        this.hostEl.hide();
-                    }
-                });
-            }
-            this.hostEl.scrollHandler.bindScrollListener();
-        }
-    }
-
+          }
+        );
+      }
+    };
+  }
 }
