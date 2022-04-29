@@ -162,11 +162,17 @@ export class DomHandler {
     }
 
     static getParents(element: any, parents:any = []): any {
-        return element['parentNode'] === null && element['host'] === undefined ? 
-            parents : 
-            element['parentNode'] ? 
-                this.getParents(element.parentNode, parents.concat([element.parentNode])) :
-                this.getParents(element.host, parents.concat([element.host]));
+        // return element['parentNode'] === null && element['host'] === undefined ?
+        //     parents :
+        //     element['parentNode'] ?
+        //         this.getParents(element.parentNode, parents.concat([element.parentNode])) :
+        //         this.getParents(element.host, parents.concat([element.host]));
+        return element['parentNode'] === null
+          ? parents
+          : this.getParents(
+              element.parentNode,
+              parents.concat([element.parentNode])
+            );
     }
 
     static getScrollableParents(element: any) {

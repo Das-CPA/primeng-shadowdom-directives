@@ -12,7 +12,7 @@ export class psdTooltipDirective {
 
     // default is 'body' which appends the tooltip element at the bottom of the page
     // within the ShadowDom we want to default to appending to the current element
-    (hostEl as any).appendTo = 'target';
+    // (hostEl as any).appendTo = 'target';
 
     hostEl.bindScrollListener = () => {
       if (!hostEl.scrollHandler) {
