@@ -2,70 +2,84 @@ import { NgModule } from "@angular/core";
 import {
   psdCalendarDirective,
   psdDropdownDirective,
-  psdMenuDirective,
   psdMultiSelectDirective,
-  psdTooltipDirective,
   psdAutoCompleteDirective,
   psdCascadeSelectDirective,
-  psdColorPickerDirective,
   psdMegaMenuDirective,
   psdMenuBarDirective,
   psdInputMask,
-  psdSlideMenuDirective,
-  psdTieredMenuDirective,
   psdOverlayPanelDirective,
-  psdSplitButtonDirective,
   psdTreeSelectDirective,
+  psdPaginatorDirective,
 } from "./directives";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { psdConfirmPopupDirective } from "./directives/confirmpopup";
 import { psdStyleClass } from "./directives/styleclass";
+import { DomHandler } from 'primeng/dom'
+
+DomHandler.getScrollableParents = (element: any) => {
+  let scrollableParents = [];
+
+  if (element) {
+    let parents = DomHandler.getParents(element).filter(item => !(item instanceof ShadowRoot));
+    const overflowRegex = /(auto|scroll)/;
+    const overflowCheck = (node: any) => {
+      let styleDeclaration = window['getComputedStyle'](node, null);
+      return overflowRegex.test(styleDeclaration.getPropertyValue('overflow')) || overflowRegex.test(styleDeclaration.getPropertyValue('overflowX')) || overflowRegex.test(styleDeclaration.getPropertyValue('overflowY'));
+    };
+
+    for (let parent of parents) {
+      let scrollSelectors = parent.nodeType === 1 && parent.dataset['scrollselectors'];
+      if (scrollSelectors) {
+        let selectors = scrollSelectors.split(',');
+        for (let selector of selectors) {
+          let el = DomHandler.findSingle(parent, selector);
+          if (el && overflowCheck(el)) {
+            scrollableParents.push(el);
+          }
+        }
+      }
+
+      if (parent.nodeType !== 9 && overflowCheck(parent)) {
+        scrollableParents.push(parent);
+      }
+    }
+  }
+
+  return scrollableParents;
+}
 
 @NgModule({
   declarations: [
     psdDropdownDirective,
     psdCalendarDirective,
-    psdTooltipDirective,
     psdMultiSelectDirective,
-    psdMenuDirective,
     psdAutoCompleteDirective,
     psdCascadeSelectDirective,
-    psdColorPickerDirective,
     psdMegaMenuDirective,
     psdMenuBarDirective,
     psdInputMask,
     psdConfirmPopupDirective,
     psdStyleClass,
     psdConfirmPopupDirective,
-    psdSlideMenuDirective,
-    psdTieredMenuDirective,
     psdOverlayPanelDirective,
-    psdSplitButtonDirective,
     psdTreeSelectDirective,
-  ],
-  imports: [
-    BrowserAnimationsModule
+    psdPaginatorDirective,
   ],
   exports: [
     psdDropdownDirective,
     psdCalendarDirective,
-    psdTooltipDirective,
     psdMultiSelectDirective,
-    psdMenuDirective,
     psdAutoCompleteDirective,
     psdCascadeSelectDirective,
-    psdColorPickerDirective,
     psdMegaMenuDirective,
     psdMenuBarDirective,
     psdInputMask,
     psdConfirmPopupDirective,
     psdStyleClass,
     psdConfirmPopupDirective,
-    psdSlideMenuDirective,
-    psdTieredMenuDirective,
     psdOverlayPanelDirective,
-    psdSplitButtonDirective,
     psdTreeSelectDirective,
+    psdPaginatorDirective,
   ]
 })
 export class PrimeNGShadowDOMDirective { }
