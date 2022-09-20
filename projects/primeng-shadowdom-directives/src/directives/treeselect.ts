@@ -28,7 +28,7 @@ export class psdTreeSelectDirective {
             hostEl.overlayVisible &&
             hostEl.overlayEl &&
             !hostEl.containerEl.nativeElement.contains(event.target.shadowRoot ? event.target.shadowRoot.activeElement : event.target) &&
-            !hostEl.overlayEl.contains(event.target)
+            !hostEl.overlayEl.contains(event.target.shadowRoot ? event.target.shadowRoot.activeElement : event.target)
           ) {
             hostEl.hide();
           }
