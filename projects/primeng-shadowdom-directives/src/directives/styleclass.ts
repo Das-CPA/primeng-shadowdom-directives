@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, Renderer2, OnDestroy, AfterViewInit } from '@angular/core';
-import { DomHandler } from '../domhandler';
+import { DomHandler } from "primeng/dom";
 
 @Directive({
     selector: '[psdStyleClass]',
