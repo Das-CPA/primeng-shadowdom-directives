@@ -11,7 +11,7 @@ import { psdPaginatorDirective } from "./paginator";
 import { psdInputMask } from './inputmask';
 import { psdTreeSelectDirective } from "./treeselect";
 import { psdStyleClass } from "./styleclass";
-import { psdTooltipDirective } from "./tooltip";
+import { psdDasTooltipDirective } from "./tooltip";
 
 export {
   psdDropdownDirective,
@@ -27,5 +27,5 @@ export {
   psdTreeSelectDirective,
   psdPaginatorDirective,
   psdStyleClass,
-  psdTooltipDirective
+  psdDasTooltipDirective
 }

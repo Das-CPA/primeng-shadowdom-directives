@@ -11,11 +11,11 @@ import {
   psdOverlayPanelDirective,
   psdTreeSelectDirective,
   psdPaginatorDirective,
-  psdTooltipDirective,
 } from "./directives";
 import { psdConfirmPopupDirective } from "./directives/confirmpopup";
 import { psdStyleClass } from "./directives/styleclass";
 import { DomHandler } from 'primeng/dom'
+import { psdDasTooltipDirective } from "./directives/tooltip";
 
 DomHandler.getScrollableParents = (element: any) => {
   let scrollableParents = [];
@@ -65,7 +65,7 @@ DomHandler.getScrollableParents = (element: any) => {
     psdOverlayPanelDirective,
     psdTreeSelectDirective,
     psdPaginatorDirective,
-    psdTooltipDirective
+    psdDasTooltipDirective
   ],
   exports: [
     psdDropdownDirective,
@@ -82,7 +82,7 @@ DomHandler.getScrollableParents = (element: any) => {
     psdOverlayPanelDirective,
     psdTreeSelectDirective,
     psdPaginatorDirective,
-    psdTooltipDirective
+    psdDasTooltipDirective
   ]
 })
 export class PrimeNGShadowDOMDirective { }
