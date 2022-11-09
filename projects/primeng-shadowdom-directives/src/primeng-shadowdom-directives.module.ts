@@ -11,7 +11,6 @@ import {
   psdOverlayPanelDirective,
   psdTreeSelectDirective,
   psdPaginatorDirective,
-  psdTooltipDirective,
 } from "./directives";
 import { psdConfirmPopupDirective } from "./directives/confirmpopup";
 import { psdStyleClass } from "./directives/styleclass";
@@ -65,7 +64,6 @@ DomHandler.getScrollableParents = (element: any) => {
     psdOverlayPanelDirective,
     psdTreeSelectDirective,
     psdPaginatorDirective,
-    psdTooltipDirective
   ],
   exports: [
     psdDropdownDirective,
@@ -82,7 +80,6 @@ DomHandler.getScrollableParents = (element: any) => {
     psdOverlayPanelDirective,
     psdTreeSelectDirective,
     psdPaginatorDirective,
-    psdTooltipDirective
   ]
 })
 export class PrimeNGShadowDOMDirective { }
